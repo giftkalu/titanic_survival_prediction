@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Titanic Survival Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffcc00; /* Warm Yellow */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+
+        h2 {
+            color: #b30000; /* Deep Red */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #b30000;
+            padding-bottom: 10px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+            border-left: 10px solid #b30000;
+            width: 350px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+
+        label {
+            font-weight: bold;
+            color: #b30000;
+            display: block;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #b30000;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffcc00;
+            color: #b30000;
+            border: 2px solid #b30000;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #b30000;
+            color: #ffcc00;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Titanic Survival Prediction System</h2>
+
+    <form action="/predict" method="post">
+        <label>Passenger Class</label>
+        <input type="number" name="Pclass" placeholder="1–3" min="1" max="3" required>
+
+        <label>Sex</label>
+        <select name="Sex">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+
+        <label>Age</label>
+        <input type="number" step="any" name="Age" placeholder="Enter age" required>
+        
+        <label>Fare</label>
+        <input type="number" step="any" name="Fare" placeholder="Ticket Price" required>
+
+        <label>Embarked</label>
+        <select name="Embarked">
+            <option value="C">Cherbourg</option>
+            <option value="Q">Queenstown</option>
+            <option value="S">Southampton</option>
+        </select>
+
+        <button type="submit">Predict Survival</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result-box">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+    {% endif %}
+</body>
+</html>
